@@ -1,0 +1,37 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+Activities	../models.py	/^class Activities:$/;"	kind:class	line:103
+Clubs	../models.py	/^class Clubs:$/;"	kind:class	line:4
+ClubsView	../views.py	/^class ClubsView:$/;"	kind:class	line:9
+Flask	../settings.py	/^from flask import Flask$/;"	kind:namespace	line:1
+Flask	../views.py	/^from flask import Flask$/;"	kind:namespace	line:3
+Members	../models.py	/^class Members:$/;"	kind:class	line:73
+PyMongo	../settings.py	/^from flask_pymongo import PyMongo$/;"	kind:namespace	line:2
+add_activity	../models.py	/^    def add_activity(club_name, activity_id, activity_name):$/;"	kind:member	line:42
+add_club	../models.py	/^    def add_club(member_name, club_id, club_name):$/;"	kind:member	line:88
+add_member	../models.py	/^    def add_member(club_name, member_id, member_name, member_role):$/;"	kind:member	line:57
+app	../settings.py	/^app = Flask("clubsys")$/;"	kind:variable	line:5
+change_club_name	../views.py	/^    def change_club_name():$/;"	kind:member	line:48
+change_name	../models.py	/^    def change_name(club_name, club_new_name):$/;"	kind:member	line:31
+clubsys.py	../clubsys.py	1;"	kind:file	line:1
+create	../models.py	/^    def create(club_id, activity_name, activity_date, members):$/;"	kind:member	line:105
+create	../models.py	/^    def create(name, register_year="2016", description=None):$/;"	kind:member	line:11
+create	../models.py	/^    def create(sys_id, name):$/;"	kind:member	line:75
+create_club	../views.py	/^    def create_club():$/;"	kind:member	line:17
+delete	../models.py	/^    def delete(club_name):$/;"	kind:member	line:27
+delete_club_by_name	../views.py	/^    def delete_club_by_name():$/;"	kind:member	line:41
+get_id_by_name	../models.py	/^    def get_id_by_name(name):$/;"	kind:member	line:6
+insert	../models.py	/^    def insert(item):$/;"	kind:member	line:83
+jsonify	../views.py	/^from flask import jsonify$/;"	kind:namespace	line:4
+models.py	../models.py	1;"	kind:file	line:1
+mongo	../settings.py	/^mongo = PyMongo(app)$/;"	kind:variable	line:6
+render_template	../views.py	/^from flask import render_template$/;"	kind:namespace	line:6
+request	../views.py	/^from flask import request$/;"	kind:namespace	line:5
+settings.py	../settings.py	1;"	kind:file	line:1
+show_clubs	../views.py	/^    def show_clubs():$/;"	kind:member	line:27
+test	../views.py	/^    def test():$/;"	kind:member	line:12
+views.py	../views.py	1;"	kind:file	line:1

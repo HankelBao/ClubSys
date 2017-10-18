@@ -1,1 +1,122 @@
-Hello World!!!
+{% raw %}
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap@next/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css" />
+</head>
+
+<body>
+    <div id="root-node">
+        <b-navbar sticky toggleable="md" type="dark" variant="dark">
+            <b-container>
+                <b-nav-toggle target="nav_collapse"></b-nav-toggle>
+                <b-navbar-brand href="#">SFLS Club SYS</b-navbar-brand>
+                <b-collapse is-nav id="nav_collapse">
+                    <b-nav is-nav-bar>
+                        <b-nav-item href="#">CLUBS</b-nav-item>
+                        <b-nav-item href="#">ACTIVITIES</b-nav-item>
+                    </b-nav>
+                    <!-- Right aligned nav items -->
+                    <b-nav is-nav-bar class="ml-auto">
+                        <b-nav-item-dropdown text="User" right>
+                            <b-dropdown-item href="#">Profile</b-dropdown-item>
+                            <b-dropdown-item href="#">Signout</b-dropdown-item>
+                        </b-nav-item-dropdown>
+                    </b-nav>
+                </b-collapse>
+            </b-container>
+        </b-navbar>
+        <b-container>
+            <b-row>
+                <b-col cols="8" style="margin-top:25px">
+                    <div id="test-ajax"></div>
+                    <div v-for="itema in test_json">
+                        {{ itema.name }}
+                        <hr>
+                    </div>
+                </b-col>
+                <b-col cols="4">
+                    <b-list-group style="margin-top:20px">
+                        <b-list-group-item style="line-height: 15px;  height: 40px; font-size: 15px" variant="secondary">
+                            Clubs You Joined
+                            <b-badge>3</b-badge>
+                        </b-list-group-item>
+                        <b-list-group-item style="line-height: 15px;  height: 40px; font-size: 15px">
+                            Chinese Corner 中文角
+                        </b-list-group-item>
+                        <b-list-group-item style="line-height: 15px;  height: 40px; font-size: 15px">
+                            商赛
+                        </b-list-group-item>
+                        <b-list-group-item style="line-height: 15px;  height: 40px; font-size: 15px">
+                            指尖上的旋律
+                        </b-list-group-item>
+                    </b-list-group>
+                    <b-list-group style="margin-top: 20px">
+                        <b-list-group-item style="line-height: 15px;  height: 41px; font-size: 15px" variant="secondary">
+                            Your Activities
+                        </b-list-group-item>
+                        <b-list-group-item style="height: 40px; font-size: 15px">
+                            <b-form-input type="text" style="margin:-7px;height:30px" placeholder="find a activity"></b-form-input>
+                        </b-list-group-item>
+                        <b-list-group-item style="line-height: 15px;  height: 40px; font-size: 15px">
+                            Chinese Corner 第一次活动
+                        </b-list-group-item>
+                        <b-list-group-item style="line-height: 15px;  height: 40px; font-size: 15px">
+                            Chinese Corner 微信公众号维护
+                        </b-list-group-item>
+                        <b-list-group-item style="line-height: 15px;  height: 40px; font-size: 15px">
+                            Chinese Corner 外出义工
+                        </b-list-group-item>
+                    </b-list-group>
+                </b-col>
+            </b-row>
+        </b-container>
+    </div>
+
+    <!-- Jquery JavaScript -->
+    <script src="/static/js/jquery.js"></script>
+    <!-- Bootstrap Vue JavaScript -->
+    <script src="https://unpkg.com/vue"></script>
+    <script src="//unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
+    <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+    <!-- App JavaScript -->
+    <script>
+        var app = new Vue({
+            el: '#root-node',
+            data: {
+                message: 'Hello Vue!',
+                test_json: new Array(),
+                items: [{
+                        message: 'Foo'
+                    },
+                    {
+                        message: 'Bar'
+                    }
+                ]
+            },
+            methods: {
+                test_ajax: function (event) {
+                    $.getJSON("/ajax/clubs/show", function (result) {
+                        app.test_json = result;
+                        $.each(result, function (i, value) {
+                            $("#test-ajax").append(value.name);
+                            $("#test-ajax").append("<hr>");
+                        })
+                    })
+                }
+            },
+            created: function () {
+                this.test_ajax();
+            },
+        })
+    </script>
+</body>
+
+</html>
+{% endraw %}
