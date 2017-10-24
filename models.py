@@ -1,6 +1,30 @@
 from settings import *
 
 
+class CLubModel(object):
+    def __init__(self, name, register_year, description, activities, members):
+        self.name = name
+        self.register_year = register_year
+        self.description = description
+        self.activities = activities
+        self.members = members
+
+    def save(self):
+        item = {
+            "name": self.name,
+            "register_year": self.register_year,
+            "description": self.description,
+            "activities": [],
+            "members": []
+        }
+        try:
+            mongo.db.clubs.insert(item)
+        except:
+            return False
+        else:
+            return True
+
+
 class Clubs:
     @staticmethod
     def get_id_by_name(name):
