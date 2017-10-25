@@ -33,7 +33,6 @@ class ClubsView:
             }
             clubs.append(item)
 
-
         return jsonify(clubs)
 
     @staticmethod
