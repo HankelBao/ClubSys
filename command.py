@@ -14,6 +14,7 @@ class ClubsView:
         register_year = request.args.get('register_year')
         description = request.args.get('description')
 
+        import pdb; pdb.set_trace()  # XXX BREAKPOINT
         Clubs.create(name, register_year, description)
         return "OK"
 

@@ -1,8 +1,14 @@
 from settings import *
 
 
-class Clubs(object):
-    def __init__(self, name, register_year, description):
+class Clubs:
+    @staticmethod
+    def get_id_by_name(name):
+        for club in mongo.db.clubs.find({"name": name}):
+            return club["_id"]
+
+    @staticmethod
+    def create(name, register_year="2016", description=None):
         item = {
             "name": name,
             "register_year": register_year,
@@ -10,10 +16,27 @@ class Clubs(object):
             "activities": [],
             "members": []
         }
-        self.item = item
+        try:
+            mongo.db.clubs.insert(item)
+        except:
+            return False
+        else:
+            return True
 
-    def save(self):
-        mongo.db.clubs.insert(self.item)
+    @staticmethod
+    def delete(club_name):
+        mongo.db.clubs.remove({"name": club_name})
+
+    @staticmethod
+    def change_name(club_name, club_new_name):
+        mongo.db.clubs.update(
+            {"name": club_name},
+            {
+                "$set": {
+                    "name": club_new_name
+                }
+            }
+        )
 
     @staticmethod
     def add_activity(club_name, activity_id, activity_name):
