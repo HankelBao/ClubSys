@@ -1,88 +1,52 @@
 from settings import *
 
-
-class Clubs(object):
-    def __init__(self, name, register_year, description):
-        item = {
+class EmeddedModelCreator():
+    @staticmethod
+    def org(name, org):
+        return {
             "name": name,
+            "org": org,
+        }
+
+    @staticmethod
+    def member(name, role, member):
+        return {
+            "name": name,
+            "role": role,
+            "member": member,
+        }
+
+    @staticmethod
+    def activity(name, datetime, activity):
+        return {
+            "name": name,
+            "datetiem": datetime,
+            "activity": activity,
+        }
+
+class ModelCreator():
+    @staticmethod
+    def org(name, mode, register_year, description):
+        return {
+            "name": name,
+            "type": mode,
             "register_year": register_year,
             "description": description,
             "activities": [],
             "members": []
         }
-        self.item = item
-
-    def save(self):
-        mongo.db.clubs.insert(self.item)
 
     @staticmethod
-    def add_activity(club_name, activity_id, activity_name):
-        embeded_activity = {
-            "id": activity_id,
-            "name": activity_name
-        }
-        mongo.db.clubs.update(
-            {"name": club_name},
-            {
-                "$push": {
-                    "activities": embeded_activity
-                }
-            }
-        )
-
-    @staticmethod
-    def add_member(club_name, member_id, member_name, member_role):
-        embeded_member = {
-            "id": member_id,
-            "name": member_name,
-            "role": member_role
-        }
-        mongo.db.clubs.update(
-            {"name": club_name},
-            {
-                "$push": {
-                    "members": embeded_member
-                }
-            }
-        )
-
-
-class Members:
-    @staticmethod
-    def create(sys_id, name):
+    def member(student_name, student_id, password):
         return {
-            "sys_id": sys_id,
+            "student_name": student_name,
+            "student_id": student_id,
+            "password": password,
+        }
+
+    @staticmethod
+    def activity(name, datetime):
+        return {
             "name": name,
-            "clubs": [],
-        }
-
-    @staticmethod
-    def insert(item):
-        created_member_id = mongo.db.members.insert_one(item).inserted_id
-        return created_member_id
-
-    @staticmethod
-    def add_club(member_name, club_id, club_name):
-        embeded_club = {
-            "id": club_id,
-            "name": club_name,
-        }
-        mongo.db.clubs.update(
-            {"name": member_name},
-            {
-                "$push": {
-                    "activities": embeded_club
-                }
-            }
-        )
-
-
-class Activities:
-    @staticmethod
-    def create(club_id, activity_name, activity_date, members):
-        return {
-            "club_id": club_id,
-            "activity_name": activity_name,
-            "activity_date": activity_date,
-            "members": members
+            "datetime": datetime,
         }

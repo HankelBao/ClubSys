@@ -1,5 +1,6 @@
 from settings import *
 from views import *
+from ajax import *
 from command import *
 from models import *
 
