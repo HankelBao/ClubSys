@@ -4,12 +4,12 @@ import mongoengine as db
 def model_init():
     db.connect('clubsys')
 
-class Club(db.DynamicDocument):
+class Club(db.Document):
     name = db.StringField()
     members = db.EmbeddedDocumentListField(EmbeddedMember)
     activities = db.EmbeddedDocumentListField(EmbeddedActivity)
 
-class Member(db.DynamicDocument):
+class Member(db.Document):
     student_name = db.StringField()
     student_id = db.StringField()
     password = db.StringField()
@@ -17,22 +17,22 @@ class Member(db.DynamicDocument):
     clubs = db.EmbeddedDocumentListField(EmbeddedMember)
 
 
-class Activity(db.DynamicDocument):
+class Activity(db.Document):
     name = db.StringField()
     datetime = db.DateTimeField()
     club = db.EmbeddedDocumentField(EmbeddedClub)
     members = db.EmbeddedDocument(EmbeddedMember)
 
-class EmbeddedClub(db.DynamicEmbeddedDocument):
+class EmbeddedClub(db.EmbeddedDocument):
     name = db.StringField()
     club = db.ReferenceField(Club)
 
-class EmbeddedMember(db.DynamicEmbeddedDocument):
+class EmbeddedMember(db.EmbeddedDocument):
     name = db.StringField()
     role = db.StringField()
     member = db.ReferenceField(Member)
 
-class EmbeddedActivity(db.DynamicEmbeddedDocument):
+class EmbeddedActivity(db.EmbeddedDocument):
     name = db.StringField()
     datetime = db.DateTimeField()
     activity = db.ReferenceField(Activity)
