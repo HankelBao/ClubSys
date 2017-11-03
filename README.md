@@ -12,36 +12,40 @@
 * Vue.js as front end
 
 ## Design of Database
-    COLLECTION Clubs: {
-        _id
-        name
-        register_year
-        description
-        member: ARRAY COLLECTION {
-            _id
+    EmbeddedCollection: 
+        Orgs: {
             name
+            org
         }
-        activities: ARRAY COLLECTION {
-            _id
+        Member: {
+            name
+            role
+            member
+        }
+        Activity: {
+            name
+            datetime
+            activity
+        }
+    Collection:
+        Orgs: {
+            name
+            type
+            register_year
             description
+            activities
+            members
         }
-    }
-    COLLECTION Members: {
-        _id
-        sys_id
-        clubs: ARRAY COLLECTION {
-            _id
+        Member: {
+            student_name
+            student_id
+            password
+            orgs
+            activities
+        }
+        Activity: {
             name
+            datetime
+            members
+            orgs
         }
-    }
-    COLLECTION Activities: {
-        _id
-        name
-        date
-        club_id
-        club_name
-        members: ARRAY COLLECTION {
-            _id
-            name
-        }
-    }

@@ -1,33 +1,21 @@
 from settings import *
+from models import *
 
 
-class Clubs(object):
-    def create(item):
-
-    def __init__(self, name, register_year, description):
-        item = {
-            "name": name,
-            "register_year": register_year,
-            "description": description,
-            "activities": [],
-            "members": []
-        }
-        self.item = item
-
-    def save(self):
-        mongo.db.clubs.insert(self.item)
+class Orgs:
+    @staticmethod
+    def create(name, register_year, description):
+        item = ModelCreator.org(name, "", register_year, description)
+        mongo.db.orgs.insert(item)
 
     @staticmethod
-    def add_activity(club_name, activity_id, activity_name):
-        embeded_activity = {
-            "id": activity_id,
-            "name": activity_name
-        }
-        mongo.db.clubs.update(
-            {"name": club_name},
+    def add_activity(org_name, name, datetime, activity):
+        embedbed_activity = EmbeddedModelCreator.activity(name, datetime, activity)
+        mongo.db.orgs.update(
+            {"name": org_name},
             {
                 "$push": {
-                    "activities": embeded_activity
+                    "activities": embedbed_activity
                 }
             }
         )

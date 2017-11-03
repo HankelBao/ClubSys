@@ -1,6 +1,7 @@
 from settings import *
 
-class EmeddedModelCreator():
+
+class EmbeddedModelCreator():
     @staticmethod
     def org(name, org):
         return {
@@ -20,9 +21,10 @@ class EmeddedModelCreator():
     def activity(name, datetime, activity):
         return {
             "name": name,
-            "datetiem": datetime,
+            "datetime": datetime,
             "activity": activity,
         }
+
 
 class ModelCreator():
     @staticmethod
@@ -42,6 +44,8 @@ class ModelCreator():
             "student_name": student_name,
             "student_id": student_id,
             "password": password,
+            "orgs": [],
+            "activitioes": [],
         }
 
     @staticmethod
@@ -49,4 +53,6 @@ class ModelCreator():
         return {
             "name": name,
             "datetime": datetime,
+            "members": [],
+            "orgs": [],
         }
