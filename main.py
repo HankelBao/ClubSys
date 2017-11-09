@@ -1,7 +1,7 @@
 from settings import *
 from views import *
 from ajax import *
-from command import *
+import command
 from models import *
 
 if __name__ == '__main__':

@@ -3,26 +3,23 @@ from settings import *
 
 class EmbeddedModelCreator():
     @staticmethod
-    def org(name, org):
+    def org(name):
         return {
             "name": name,
-            "org": org,
         }
 
     @staticmethod
-    def member(name, role, member):
+    def member(name, role):
         return {
             "name": name,
             "role": role,
-            "member": member,
         }
 
     @staticmethod
-    def activity(name, datetime, activity):
+    def activity(name, datetime):
         return {
             "name": name,
             "datetime": datetime,
-            "activity": activity,
         }
 
 
@@ -41,11 +38,11 @@ class ModelCreator():
     @staticmethod
     def member(student_name, student_id, password):
         return {
-            "student_name": student_name,
-            "student_id": student_id,
+            "name": student_name,
+            "sys_id": student_id,
             "password": password,
             "orgs": [],
-            "activitioes": [],
+            "activities": [],
         }
 
     @staticmethod
