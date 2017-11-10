@@ -5,9 +5,9 @@ class ModelMetaclass(type):
         attrs['__table__'] = name
         return type.__new__(cls, name, bases, attrs)
 
-class Document(dict, metaclass=ModelMetaclass):
+class EmbeddedDocument(dict, metaclass=ModelMetaclass):
     def __init__(self, **kw):
-        super(Document, self).__init__(**kw)
+        super(EmbeddedDocument, self).__init__(**kw)
 
     def __getattr__(self, key):
         try:
@@ -18,17 +18,25 @@ class Document(dict, metaclass=ModelMetaclass):
     def __setattr__(self, key, value):
         self[key] = value
 
+class Document(EmbeddedDocument):
     def save(self):
-        mongo.db.__getattr__(self.__table__).insert(self)
+        if mongo.db.__getattr__(self.__table__).find_one({"name":self['name']}):
+            mongo.db.__getattr__(self.__table__).update({"name":self['name']}, self)
+        else:
+            mongo.db.__getattr__(self.__table__).insert(self)
 
     @classmethod
     def find(cls, pk):
         rs = mongo.db.__getattr__(cls.__table__).find({"name": pk})
         return cls(**rs[0])
 
+
 class Field(object):
     def __init__(self):
         pass
 
 class User(Document):
+    name = Field()
+
+class EmbeddedUser(EmbeddedDocument):
     name = Field()

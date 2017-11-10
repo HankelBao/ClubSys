@@ -11,8 +11,8 @@ from orm import *
 def index():
     Me = User(pwd=10, name=2)
     Me['sa']=[]
-    Me['sa'].append(1)
+    Me['sa'].append(2)
     Me['sa'].append("asjdkflll")
+    Me['sa'].append(EmbeddedUser(name=2, se=1))
     Me.save()
-    New = Me.find(2)
-    return str(New['sa'])
+    return str(1)
