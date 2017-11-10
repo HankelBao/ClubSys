@@ -1,3 +1,4 @@
+# TODO: rewrite the model using my new ORM
 from settings import *
 
 
