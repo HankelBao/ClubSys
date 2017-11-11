@@ -15,4 +15,5 @@ def index():
     Me['sa'].append("asjdkflll")
     Me['sa'].append(EmbeddedUser(name=2, se=1))
     Me.save()
+
     return str(1)
