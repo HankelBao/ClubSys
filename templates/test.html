@@ -1,4 +1,3 @@
-{% raw %}
 <html lang="en">
 
 <head>
@@ -9,74 +8,52 @@
     <!-- Bootstrap CSS -->
     <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap@next/dist/css/bootstrap.min.css" />
     <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css" />
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
 </head>
 
 <body>
     <div id="root-node">
-        <b-navbar sticky toggleable="md" type="dark" variant="dark">
-            <b-container>
-                <b-nav-toggle target="nav_collapse"></b-nav-toggle>
-                <b-navbar-brand href="#">SFLS Club SYS</b-navbar-brand>
-                <b-collapse is-nav id="nav_collapse">
-                    <b-nav is-nav-bar>
-                        <b-nav-item href="#">CLUBS</b-nav-item>
-                        <b-nav-item href="#">ACTIVITIES</b-nav-item>
-                    </b-nav>
-                    <!-- Right aligned nav items -->
-                    <b-nav is-nav-bar class="ml-auto">
-                        <b-nav-item-dropdown text="User" right>
-                            <b-dropdown-item href="#">Profile</b-dropdown-item>
-                            <b-dropdown-item href="#">Signout</b-dropdown-item>
-                        </b-nav-item-dropdown>
-                    </b-nav>
-                </b-collapse>
-            </b-container>
-        </b-navbar>
-        <b-container>
-            <b-row>
-                <b-col cols="8" style="margin-top:25px">
-                    <div id="test-ajax"></div>
-                    <div v-for="itema in test_json">
-                        {{ itema.name }}
-                        <hr>
+        <div name="margin" style="margin:20px">
+            <div style="height:80px" name="nav">
+                <div style="float:left">
+                    <h4 style="display:inline">SFLS Activity System</h4>
+                    <h5 style="color:#696969;margin-left:30px;display:inline">Activities</h5>
+                    <h5 style="color:#696969;margin-left:10px;display:inline">Organizations</h5>
+                </div>
+                <div style="float:right">
+                    <h5 style="color:#696969;display:inline">HankelBao</h5>
+                </div>
+            </div>
+            <div style="margin-left:20px">
+                <div style="float:left;width:20%">
+                    <h6>Chinese Corner (2)</h6>
+                    <h6 style="margin-left:30px">Business Comptition (3)</h6>
+                    <h6>Create an organization</h6>
+                </div>
+                <div style="float:right;width:80%">
+                    <div style="height:120px">
+                        <div style="width:30px;float:left;">
+                            <h6>2017.12.16</h6>
+                        </div>
+                        <div style="float:left;margin-left:60px">
+                            <h6>Second Activity</h6>
+                            <h6 style="color:#696969">This is the second activity of Chinese Corner</h6>
+                            <h6 style="color:#696969">Common Discussion > </h6>
+                            <h6 style="color:#696969">Create Discussion > </h6>
+                        </div>
                     </div>
-                </b-col>
-                <b-col cols="4">
-                    <b-list-group style="margin-top:20px">
-                        <b-list-group-item style="line-height: 15px;  height: 40px; font-size: 15px" variant="secondary">
-                            Clubs You Joined
-                            <b-badge>3</b-badge>
-                        </b-list-group-item>
-                        <b-list-group-item style="line-height: 15px;  height: 40px; font-size: 15px">
-                            Chinese Corner 中文角
-                        </b-list-group-item>
-                        <b-list-group-item style="line-height: 15px;  height: 40px; font-size: 15px">
-                            商赛
-                        </b-list-group-item>
-                        <b-list-group-item style="line-height: 15px;  height: 40px; font-size: 15px">
-                            指尖上的旋律
-                        </b-list-group-item>
-                    </b-list-group>
-                    <b-list-group style="margin-top: 20px">
-                        <b-list-group-item style="line-height: 15px;  height: 41px; font-size: 15px" variant="secondary">
-                            Your Activities
-                        </b-list-group-item>
-                        <b-list-group-item style="height: 40px; font-size: 15px">
-                            <b-form-input type="text" style="margin:-7px;height:30px" placeholder="find a activity"></b-form-input>
-                        </b-list-group-item>
-                        <b-list-group-item style="line-height: 15px;  height: 40px; font-size: 15px">
-                            Chinese Corner 第一次活动
-                        </b-list-group-item>
-                        <b-list-group-item style="line-height: 15px;  height: 40px; font-size: 15px">
-                            Chinese Corner 微信公众号维护
-                        </b-list-group-item>
-                        <b-list-group-item style="line-height: 15px;  height: 40px; font-size: 15px">
-                            Chinese Corner 外出义工
-                        </b-list-group-item>
-                    </b-list-group>
-                </b-col>
-            </b-row>
-        </b-container>
+                    <div>
+                        <div style="width:30px;float:left;">
+                            <h6>2017.12.16</h6>
+                        </div>
+                        <div style="float:left;margin-left:60px">
+                            <h6>First Activity [FINISHED]</h6>
+                            <h6 style="color:#696969">This is the first activity of Chinese Corner</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Jquery JavaScript -->
@@ -89,29 +66,11 @@
     <script>
         var app = new Vue({
             el: '#root-node',
-            data: {
-                message: 'Hello Vue!',
-                test_json: new Array(),
-                items: [{
-                        message: 'Foo'
-                    },
-                    {
-                        message: 'Bar'
-                    }
-                ]
-            },
+            data: {},
             methods: {
-                test_ajax: function (event) {
-                    $.getJSON("/ajax/clubs/show", function (result) {
-                        app.test_json = result;
-                        $.each(result, function (i, value) {
-                            $("#test-ajax").append(value.name);
-                            $("#test-ajax").append("<hr>");
-                        })
-                    })
-                }
+                test_ajax: function(event) {}
             },
-            created: function () {
+            created: function() {
                 this.test_ajax();
             },
         })
@@ -119,4 +78,3 @@
 </body>
 
 </html>
-{% endraw %}
