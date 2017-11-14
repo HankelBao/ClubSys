@@ -12,7 +12,7 @@
 * Vue.js as front end
 
 ## Design of Database
-    EmbeddedCollection: 
+    EmbeddedCollection:
         Orgs: {
             name
             org
