@@ -1,5 +1,10 @@
 from settings import *
 
+def Field():
+    return ""
+
+def ListField():
+    return []
 
 class ModelMetaclass(type):
     def __new__(cls, name, bases, attrs):
@@ -7,9 +12,20 @@ class ModelMetaclass(type):
         return type.__new__(cls, name, bases, attrs)
 
 
-class EmbeddedDocument(dict, metaclass=ModelMetaclass):
+class EmbeddedDocument(dict, object, metaclass=ModelMetaclass):
     def __init__(self, **kw):
+        try:
+            test_valid = kw['name']
+        except KeyError:
+            kw['name'] = ""
+        for name, value in vars(self.__class__).items():
+            try:
+                test_valid = kw[name]
+            except KeyError:
+                if  name != "__table__" and name != "__doc__" and name != "__module__" :
+                    kw[name] = value
         super(EmbeddedDocument, self).__init__(**kw)
+
 
     def __getattr__(self, key):
         try:
@@ -33,12 +49,3 @@ class Document(EmbeddedDocument):
     def find(cls, pk):
         rs = mongo.db.__getattr__(cls.__table__).find({"name": pk})
         return cls(**rs[0])
-
-
-class Field(object):
-    def __init__(self):
-        pass
-
-class ListField(object):
-    def __init__(self):
-        pass

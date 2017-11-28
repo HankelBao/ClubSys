@@ -31,10 +31,3 @@ class Acitivity(mongodb.Document):
     datetime = mongodb.Field()
     members = mongodb.ListField()
     orgs = mongodb.ListField()
-
-class User(mongodb.Document):
-    name = mongodb.Field()
-
-
-class EmbeddedUser(mongodb.EmbeddedDocument):
-    name = mongodb.Field()
